@@ -11,7 +11,7 @@ clean:
 	rm -rf build/html
 
 html: builddir
-	sphinx-build -j `nproc` -b html $(SPHINXOPTS) . ./build/html
+	sphinx-build -j `nproc 2> /dev/null || sysctl -n hw.ncpu` -b html $(SPHINXOPTS) . ./build/html
 
 livehtml: builddir
 	sphinx-autobuild --ignore "*.git/*" --ignore "*.lock" --ignore "*.pyc" --ignore "*.swp" --ignore "*.swpx" --ignore "*.swx" -b html $(SPHINXOPTS) . ./build/html
