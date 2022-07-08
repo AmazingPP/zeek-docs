@@ -19,5 +19,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Fetch Dependencies
         run: sudo pip3 install -r requirements.txt
+      - name: Show CPUs
+        run: echo $(nproc 2>/dev/null || sysctl -n hw.ncpu)
       - name: Generate Docs
         run: make SPHINXOPTS="-W --keep-going"
